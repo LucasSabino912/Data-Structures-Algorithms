@@ -7,19 +7,19 @@
     If there are multiple answers, return the number with the largest value.
 */
 
-#include <stdio.h>
-#include <math.h>
-
 int findClosestNumber(int* nums, int numsSize) {
-    int closest = nums[0];
-    for (int i = 0; i < numsSize; i++){
-        if((abs(nums[i]) < abs(closest)) || ((abs(closest) == abs(nums[i]) && (nums[i] >= closest)))){
+    int i = 0;
+    int closest = nums[i];
+    while(i < numsSize){
+        if((absolute(nums[i]) < absolute(closest)) || ((absolute(nums[i]) == absolute(closest) && (nums[i] > closest)))){
             closest = nums[i];
-        }  
+        }
+        i++;
     }
+
     return closest;
 }
 
-int abs(int n){
+int absolute(int n){
     return (n < 0) ? -n : n;
 }
