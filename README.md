@@ -21,32 +21,33 @@ Understanding data structures and algorithms is essential for solving complex pr
 
 ## Learning Plan
 
-### Phase 1: Basics
+### Phase 1: Basics, Sorting and Searching Algorithms
 - Introduction to Algorithms
 - Big O Notation
 - Arrays and Strings
-- Basic sorting algorithms
-
-### Phase 2: Linear Data Structures
-- Linked Lists
-- Stacks
-- Queues
-
-### Phase 3: Non-Linear Data Structures
-- Trees (Binary Trees, Binary Search Trees)
-- Graphs
-- Heaps
-
-### Phase 4: Sorting and Searching Algorithms
+- Elemental sorting
+- Advanced sorting
 - Bubble Sort
 - Merge Sort
 - Quick Sort
 - Binary Search
 
-### Phase 5: Advanced Topics
-- Dynamic Programming
+### Phase 2: Data types and Linear Data Structures
+- Concrete types
+- Abstract types
+- Linked Lists
+- Stacks
+- Queues
+
+### Phase 3: Programming techniques
+- Trees (Binary Trees, Binary Search Trees)
+- Graphs
+- Heaps
+
+### Phase 4: Advanced Topics
 - Greedy Algorithms
 - Backtracking
+- Dynamic Programming
 
 ### Phase 6: Problem-Solving Practice
 - LeetCode Challenges
