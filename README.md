@@ -23,8 +23,6 @@ Understanding data structures and algorithms is essential for solving complex pr
 
 ### Phase 1: Basics, Sorting and Searching Algorithms
 - Introduction to Algorithms
-- Big O Notation
-- Arrays and Strings
 - Elemental sorting
 - Advanced sorting
 - Bubble Sort
