@@ -4,7 +4,6 @@
 
 Es el algoritmo mas sencillo pero no asi el mas rápido. Su funcionamiento se basa en seleccionar el menor elemento de todos, lo intercambia con el elemento que se encuentra en la primera posición, luego, selecciona al menor de los restantes y lo pone en la segunda posición, y asi sucesivamente hasta terminar
 
-![1000001069.png](Ordenacio%CC%81n%20elemental%200c5a4d97c00a4823992506959597dd1b/1000001069.png)
 
 En el lenguaje de la materia:
 
@@ -67,7 +66,6 @@ void selection_sort (int* nums, int numsSize){
 
 Cada elemento menor se agarra del arreglo y se inserta en su lugar correspondiente
 
-![1000001070.png](Ordenacio%CC%81n%20elemental%200c5a4d97c00a4823992506959597dd1b/1000001070.png)
 
 En el lenguaje de la materia:
 
