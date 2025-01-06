@@ -37,12 +37,12 @@ Understanding data structures and algorithms is essential for solving complex pr
 - Stacks
 - Queues
 
-### Phase 3: Programming techniques
+### Phase 3: Advanced data structures
 - Trees (Binary Trees, Binary Search Trees)
 - Graphs
 - Heaps
 
-### Phase 4: Advanced Topics
+### Phase 4: Programming techniques
 - Greedy Algorithms
 - Backtracking
 - Dynamic Programming
