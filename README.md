@@ -1,66 +1,66 @@
-# My Data Structures & Algorithms Road
+# Algoritmos y Estructuras de datos
 
-## Table of Contents
+## Tabla de Contenidos
 
-1. [Introduction](#introduction)
-2. [Why Data Structures & Algorithms?](#why-data-structures--algorithms)
-3. [Learning Plan](#learning-plan)
-4. [Resources](#resources)
-5. [Projects](#projects)
+1. [Introducción](#introduccion)
+2. [¿Por qué Algoritmos y Estructuras de datos?](#por-que-estructuras-de-datos-y-algoritmos)
+3. [Plan de Aprendizaje](#plan-de-aprendizaje)
+4. [Recursos](#recursos)
+5. [Proyectos](#proyectos)
 
-## Introduction
+## Introducción
 
-Understanding data structures and algorithms is essential for solving complex problems efficiently and is a key skill for any software developer. This repository outlines my roadmap for mastering these concepts, including the topics I plan to cover and the resources I will use.
+Comprender las estructuras de datos y los algoritmos es esencial para resolver problemas complejos de manera eficiente y es una habilidad clave para cualquier desarrollador de software. Este repositorio describe mi hoja de ruta para dominar estos conceptos, incluyendo los temas que planeo cubrir y los recursos que utilizaré.
 
-## Why Data Structures & Algorithms?
+## ¿Por qué Algoritmos y Estructuras de datos?
 
-- **Problem-Solving Skills**: Enhances your ability to solve problems efficiently.
-- **Coding Interviews**: Essential for technical interviews at top tech companies.
-- **Optimization**: Helps in optimizing code for better performance.
-- **Foundational Knowledge**: Provides a deep understanding of how data and processes work.
+- **Habilidades de Resolución de Problemas**: Mejora tu capacidad para resolver problemas de manera eficiente.
+- **Entrevistas tecnicas**: Esencial para entrevistas técnicas en empresas tecnológicas de primer nivel.
+- **Optimización**: Ayuda a optimizar el código para un mejor rendimiento.
+- **Conocimiento Fundamental**: Proporciona una comprensión profunda de cómo funcionan los datos y los procesos.
 
-## Learning Plan
+## Plan de Aprendizaje
 
-### Phase 1: Basics, Sorting and Searching Algorithms
-- Introduction to Algorithms
-- Elemental sorting
-- Advanced sorting
-- Bubble Sort
+### Fase 1: Conceptos Básicos, Algoritmos de Ordenamiento y Búsqueda
+- Introducción a los Algoritmos
+- Ordenamiento elemental
+- Ordenamiento avanzado
+- Ordenamiento de burbuja
 - Merge Sort
 - Quick Sort
-- Binary Search
+- Búsqueda binaria
 
-### Phase 2: Data types and Linear Data Structures
-- Concrete types
-- Abstract types
-- Linked Lists
-- Stacks
-- Queues
+### Fase 2: Tipos de Datos y Estructuras de Datos Lineales
+- Tipos concretos
+- Tipos abstractos
+- Listas enlazadas
+- Pilas
+- Colas
 
-### Phase 3: Advanced data structures
-- Trees (Binary Trees, Binary Search Trees)
-- Graphs
+### Fase 3: Estructuras de Datos Avanzadas
+- Árboles (Árboles Binarios, Árboles de Búsqueda Binaria)
+- Grafos
 - Heaps
 
-### Phase 4: Programming techniques
-- Greedy Algorithms
-- Backtracking
-- Dynamic Programming
+### Fase 4: Técnicas de Programación
+- Algoritmos voraces
+- Retroceso
+- Programación dinámica
 
-### Phase 6: Problem-Solving Practice
-- LeetCode Challenges
-- Codeforces Contests
-- HackerRank Practice
+### Fase 6: Práctica de Resolución de Problemas
+- Retos de LeetCode
+- Concursos de Codeforces
+- Práctica en HackerRank
 
-## Resources
+## Recursos
 
-- **Websites**:
+- **Sitios Web**:
   - LeetCode (https://leetcode.com)
   - GeeksforGeeks (https://geeksforgeeks.org)
   - HackerRank (https://hackerrank.com)
 
-## Projects
+## Proyectos
 
-- **Project 1**: Implement a basic library of data structures in your preferred programming language.
-- **Project 2**: Create a visualizer for sorting algorithms.
-- **Project 3**: Develop a simple web application that utilizes graph algorithms for pathfinding.
+- **Proyecto 1**: Implementar una biblioteca básica de estructuras de datos en tu lenguaje de programación preferido.
+- **Proyecto 2**: Crear un visualizador para algoritmos de ordenamiento.
+- **Proyecto 3**: Desarrollar una aplicación web simple que utilice algoritmos de grafos para encontrar rutas.
