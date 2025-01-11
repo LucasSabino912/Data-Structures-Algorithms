@@ -36,28 +36,19 @@ Comprender las estructuras de datos y los algoritmos es esencial para resolver p
 - Listas enlazadas
 - Pilas
 - Colas
+- Arboles binarios de busqueda
 
-### Fase 3: Estructuras de Datos Avanzadas
-- Árboles (Árboles Binarios, Árboles de Búsqueda Binaria)
-- Grafos
-- Heaps
-
-### Fase 4: Técnicas de Programación
+### Fase 3: Técnicas de Programación
 - Algoritmos voraces
-- Retroceso
+- Recorrida de grafos
+- Backtracing
 - Programación dinámica
 
-### Fase 6: Práctica de Resolución de Problemas
-- Retos de LeetCode
+### Fase 4: Práctica de Resolución de Problemas
+- Retos de LeetCode (https://leetcode.com)
 - Concursos de Codeforces
-- Práctica en HackerRank
-
-## Recursos
-
-- **Sitios Web**:
-  - LeetCode (https://leetcode.com)
-  - GeeksforGeeks (https://geeksforgeeks.org)
-  - HackerRank (https://hackerrank.com)
+- Práctica en HackerRank (https://hackerrank.com)
+- GeeksforGeeks (https://geeksforgeeks.org)
 
 ## Proyectos
 
