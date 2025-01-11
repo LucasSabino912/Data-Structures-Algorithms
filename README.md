@@ -44,7 +44,7 @@ Comprender las estructuras de datos y los algoritmos es esencial para resolver p
 - Backtracing
 - Programación dinámica
 
-### Fase 4: Práctica de Resolución de Problemas
+### Fase 4: Resolución de Problemas
 - Retos de LeetCode (https://leetcode.com)
 - Concursos de Codeforces
 - Práctica en HackerRank (https://hackerrank.com)
