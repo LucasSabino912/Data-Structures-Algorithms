@@ -25,10 +25,10 @@ Consiste de una serie finita de constantes, que seran los unicos elementos del t
 
 ```c
 type E = enumerate 
-					elem1
-					elem2
-					...
-				 end enumerate
+		elem1
+		elem2
+		...
+end enumerate
 ```
 
 En C:
@@ -63,10 +63,10 @@ Las tuplas representan productos cartesianos de distintos tipos. Se puede defini
 
 ```c
 type person = tuple 
-								name: string
-								age: nat
-								weight: real
-							end tuple
+		name: string
+		age: nat
+		weight: real
+	    end tuple
 ```
 
 En C: 
@@ -212,9 +212,9 @@ operations
 implement List of T where
 
 type Node of T = Tuple
-									elem: T
-									next: pointer to (Node of T)
-								 end tuple
+		   elem: T
+		   next: pointer to (Node of T)
+		 end tuple
 
 type List of T = pointer to (Node of T)
 
