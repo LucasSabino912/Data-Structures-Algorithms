@@ -186,6 +186,10 @@ operations
 	proc tail(in/out l: List of T)
 	{- Elimina el primer elemento de la lista l -}
 	{- PRE: !is_empty -}
+
+	proc addr(in/out l: List of T)
+	{- Agrega un elemento al final de l -}
+	{- PRE: !is_empty -}
 	
 	fun length(l: List of T) ret n: nat
 	{- Devuelve el tamaño de la lista l -}
