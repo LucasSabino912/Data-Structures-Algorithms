@@ -13,26 +13,54 @@ struct bound_data {
 
 struct bound_data check_bound(int value, int arr[], unsigned int length) {
     struct bound_data res;
-    //
-    // TODO: COMPLETAR
-    //
+
+    // Declaro los valores iniciales para los datos
+    res.is_upperbound = true;
+    res.is_lowerbound = true;
+    res.exists = false;
+    
+
+    for(int i = 0; i < length; i++){
+        if(value < arr[i]){
+            res.is_lowerbound = false;
+        } 
+        else if(value > arr[i]){
+            res.is_upperbound = false;
+        }
+        else if(value == arr[i]){
+            res.exists = true;
+            res.where = i;
+        } 
+    }
     return res;
 }
 
 int main(void) {
     int a[ARRAY_SIZE] = {0, -1, 9, 4};
     int value=9;
-    //
-    // TODO: COMPLETAR - Pedir entrada al usuario
-    //
+
+    printf("Ingresar los elementos del arreglo uno a uno\n");
+    for(int i = 0; i < ARRAY_SIZE; i++){
+        int input;
+        printf("Elemento%d\n", i);
+        scanf("%d", input);
+        a[i] = input;
+    }
+
     struct bound_data result = check_bound(value, a, ARRAY_SIZE);
 
-    // TODO: REEMPLAZAR LO SIGUIENTE LUEGO POR LA SALIDA QUE PIDE EL ENUNCIADO
-    printf("%d", result.is_upperbound); // Imprime 1
-    printf("%d", result.is_lowerbound); // Imprime 0
-    printf("%u", result.exists);        // Imprime 1
-    printf("%u", result.where);         // Imprime 2
-
+    if (result.is_lowerbound && result.exists){
+        printf("El valor es minimo y esta en la posicion&d\n", result.where);
+    } 
+    else if (result.is_upperbound && result.exists){
+        printf("El valor es maximo y esta en la posicion&d\n", result.where);        
+    }
+    if (result.is_lowerbound && !result.exists){
+        printf("Es cota inferior\n");
+    } 
+    else if (result.is_upperbound && !result.exists){
+        printf("Es cota superior\n");        
+    }
     return EXIT_SUCCESS;
 }
 
