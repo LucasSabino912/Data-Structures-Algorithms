@@ -1,2 +1,5 @@
-gcc -Wall -Werror -Wextra -pedantic -std=c99 reader 
-./reader 
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -o reader *programa* 
+./reader *input*
+
+
+\n
