@@ -1,5 +1,10 @@
 gcc -Wall -Werror -Wextra -pedantic -std=c99 -o reader *programa* 
 ./reader *input*
 
-
 \n
+
+Compilar modularizados:
+
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 main.o array_helpers.o -o reader 
