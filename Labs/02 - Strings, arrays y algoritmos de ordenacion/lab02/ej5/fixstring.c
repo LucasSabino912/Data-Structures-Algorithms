@@ -1,19 +1,55 @@
-#include <stdbool.h>
+*#include <stdbool.h>
 #include <assert.h>
 
 #include "fixstring.h"
 
-
 unsigned int fstring_length(fixstring s) {
-    /* copiá acá la implementación que hiciste en el ejercicio 0 */
+    unsigned int i = 0u;
+    while (s[i] != '\0'){
+        i++;
+    }
+
+    return i; 
 }
 
 bool fstring_eq(fixstring s1, fixstring s2) {
-    /* copiá acá la implementación que hiciste en el ejercicio 0 */
+    unsigned int i = 0;
+    unsigned int lengths1 = 0, lengths2;
+
+    lengths1 = fstring_length(s1);
+    lengths2 = fstring_length(s2);
+
+    if (lengths1 != lengths2){
+        return false;
+    }
+
+    while(s1[i] != '\0' && s2[i] != '\0'){
+        if(s1[i] == s2[i]){
+            i++;
+        } else {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool fstring_less_eq(fixstring s1, fixstring s2) {
-    /* copiá acá la implementación que hiciste en el ejercicio 0 */
+    unsigned int i = 0;
+
+    if(s1 == s2){
+        return false;
+    }
+
+    while (s1[i] != '\0' && s2[i] != '\0'){
+        if(s1[i] < s2[i]){
+            i++;
+        } else {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 void fstring_set(fixstring s1, const fixstring s2) {
@@ -27,10 +63,9 @@ void fstring_set(fixstring s1, const fixstring s2) {
 
 void fstring_swap(fixstring s1,  fixstring s2) {
     fixstring aux;
-    /*
-     * COMPLETAR
-     *
-     */
+    fixstring_set(aux, s1);
+    fixstring_set(s1, s2);
+    fixstring_set(s2, aux);
 }
 
 
