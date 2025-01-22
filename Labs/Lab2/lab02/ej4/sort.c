@@ -24,24 +24,38 @@ void selection_sort(int a[], unsigned int length) {
     }
 }
 
-
 static void insert(int a[], unsigned int i) {
-    /* copiá acá la implementación que hiciste en el ejercicio 1 */
+    while (i > 0 && goes_before(a[i], a[i-1])){
+        swap(a, i-1, i);
+        i--;
+    }
 }
-
 void insertion_sort(int a[], unsigned int length) {
     for (unsigned int i = 1u; i < length; ++i) {
         insert(a, i);
     }
 }
 
-
 static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
-    /* copiá acá la implementación que hiciste en el ejercicio 3 */
+    int pivot = a[der];
+    int i = (izq - 1);
+
+    for(unsigned int j = izq; j <= der - 1; j++){
+        if(a[j] <= pivot){
+            i++;
+            swap(a, a[i], a[j]);
+        }
+    }
+    swap(a, a[i + 1], a[der]);
+    return(i + 1);
 }
 
 static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
-    /* copiá acá la implementación que hiciste en el ejercicio 2 */
+    if(izq < der){
+        unsigned int pivot = partition(a, izq, der);
+        quick_sort_rec(a, izq, pivot - 1);
+        quick_sort_rec(a, pivot + 1, der);
+    }
 }
 
 void quick_sort(int a[], unsigned int length) {
