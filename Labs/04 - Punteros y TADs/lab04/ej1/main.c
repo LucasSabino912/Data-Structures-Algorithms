@@ -22,18 +22,27 @@ int main(void) {
     person_t m = {90, 'M'};
     int a[] = {0, 1, 2, 3};
 
-    /* Completar aquí:
-       Al finalizar la ejecución las variables deben tener los siguientes valores
-       x = 9
-       m = (100, F)
-       a[1] = 42
+    int *p = NULL;
+    char *q = NULL;
 
-       Las restricciones son:
-       - No usar las variables 'x', 'm' y 'a' en la parte izquierda de alguna asignación.
-       - Se pueden agregar líneas de código, pero no modificar las que ya existen.
-       - Se pueden declarar hasta 2 punteros.
-       AYUDA: podes usar GDB para consultares valores de variables y la dirección de memoria donde estan alojadas.
-    */
+    p = &x; // Le asigno a p la direccion de memoria de x
+            // Ahora p apunta a x
+    
+    *p = 9; // Esta linea la asigna 9 a la direccion de memooria a la que apunta p
+            // Dado que p apunta a x, *p se refiere a x
+            // Esto es equivalente a x = 9, por lo tanto, x vale 9
+
+    p = &m.age; // p apunta a m.age
+
+    *p = 100; // m.age toma el valor 100
+  
+    p = &m.name_initial; // p apunta a m.name_initial
+
+    *p = 'F'; // m.name_initial toma el valor F
+
+    p = &a[1]; // p apunta al segundo elemento de a
+
+    *p = 42; // a[1] = 42
 
     printf("x = %d\n", x);
     printf("m = (%d, %c)\n", m.age, m.name_initial);
