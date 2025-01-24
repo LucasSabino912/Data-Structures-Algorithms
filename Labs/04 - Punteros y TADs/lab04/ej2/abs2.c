@@ -17,7 +17,7 @@ int main(void) {
 
     absolute(a, &res); // res = 10
 
-    printf("%d", &res);
+    printf("%d", res);
 
     assert(res >= 0 && (res == a || res == -a));
     return EXIT_SUCCESS;
