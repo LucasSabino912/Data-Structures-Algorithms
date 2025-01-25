@@ -14,6 +14,8 @@ counter counter_init(void);
     Being c the returned counter, counter_is_init(c) should be true.
 */
 
+unsigned int counter_count(counter c);
+
 void counter_inc(counter c);
 /*
     Increments the counter c.
