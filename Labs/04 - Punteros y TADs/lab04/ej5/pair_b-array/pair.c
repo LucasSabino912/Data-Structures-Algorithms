@@ -1,0 +1,35 @@
+#include <stdlib.h>  /* EXIT_SUCCESS... */
+#include <stdio.h>   /* printf()...     */
+#include "pair.h"    /* TAD Par         */
+
+// Creates a new pair with components (x, y)
+pair_t pair_new(int x, int y){
+    pair_t pair;
+    pair.values[0] = x;
+    pair.values[1] = y;
+
+    return pair;
+}
+
+// Returns the first component of p
+int pair_first(pair_t p){
+    return p.values[0];
+}
+// Returns the second component of p
+int pair_second(pair_t p){
+    return p.values[1];
+}
+
+//Return a NEW pair with the components of p reversed
+pair_t pair_swapped(pair_t p){
+    pair_t swapped;
+    swapped.values[0] = p.values[1];
+    swapped.values[1] = p.values[0];
+
+    return swapped;
+}
+
+// Free memory if its necesary
+pair_t pair_destroy(pair_t p){
+    return p;
+}

@@ -4,7 +4,7 @@
 typedef struct s_pair_t pair_t;
 
 struct s_pair_t {
-    int values[2];
+    int values[2]; // El par esta definido como un arreglo de dos elementos
 };
 
 pair_t pair_new(int x, int y);
