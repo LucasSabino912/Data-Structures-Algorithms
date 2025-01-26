@@ -15,7 +15,7 @@ int main(void) {
     char *filtered=NULL;
 
     printf("Ingrese un texto (no más de %d símbolos) para verificar palíndromo: ", MAX_LENGTH);
-    scanf("%s", user_input);
+    fgets(user_input, MAX_LENGTH, NULL);
     filtered = string_filter(user_input, ignore_chars[0]);
     for (unsigned int i=0; i < SIZEOF_ARRAY(ignore_chars); i++) {
         filtered = string_filter(filtered, ignore_chars[i]);
