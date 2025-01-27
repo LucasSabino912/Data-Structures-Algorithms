@@ -17,6 +17,8 @@ typedef struct _s_stack *stack;
 */
 typedef int stack_elem;
 
+typedef unsigned int nat;
+
 /**
 * @brief Creates an empty stack
 * @return An empty stack
