@@ -12,6 +12,8 @@
 */
 typedef struct _s_stack *stack;
 
+typedef unsigned int nat;
+
 /**
 * @brief Stack elements type definition
 */
