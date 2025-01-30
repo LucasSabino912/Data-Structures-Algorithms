@@ -5,11 +5,15 @@
 
 #include "queue.h"
 
+/*
+Basicamente podemos pensar una cola como un conjunto de listas,
+cada elemento tiene su elemento y su puntero al nodo
+*/
+
 struct s_queue {
-    /*
-     * COMPLETAR
-     */
     struct s_node *first;
+    struct s_node *last;
+    unsigned int size;
 };
 
 struct s_node {
@@ -37,15 +41,25 @@ destroy_node(struct s_node *node) {
 
 static bool
 invrep(queue q) {
-    return q != NULL;
+    // q->first == NULL <=>
+    // q->first == NULL <=>
+    // q->size == 0
+    bool some_null = true;
+    if(q->first == NULL || q->last == NULL || q->size == 0){
+        some_null = (q->first == NULL && q->last == NULL && q->size == 0);
+    }
+
+    bool invrep = q != NULL && some_null;
+
+    return invrep;
 }
 
 queue queue_empty(void) {
     queue q=NULL;
-    /*
-     * COMPLETAR
-     *
-     */
+    q = malloc(sizeof(struct s_queue));
+    q->first = NULL;
+    q->size = 0;
+    q->last = NULL;
     assert(invrep(q) && queue_is_empty(q));
     return q;
 }
@@ -56,11 +70,10 @@ queue queue_enqueue(queue q, queue_elem e) {
     if (q->first==NULL) {
         q->first = new_node;
     } else {
-        /*
-         * COMPLETAR
-         *
-         */
+        q->last->next = new_node;
+        q->last = q->last->next;
     }
+    q->size++;
     assert(invrep(q) && !queue_is_empty(q));
     return q;
 }
@@ -74,13 +87,12 @@ queue_elem queue_first(queue q) {
     assert(invrep(q) && !queue_is_empty(q));
     return q->first->elem;
 }
+
+// De orden constante
 unsigned int queue_size(queue q) {
     assert(invrep(q));
-    unsigned int size=0;
-    /*
-     * COMPLETAR
-     *
-     */
+    unsigned int size = 0;
+    size = q->size;
     return size;
 }
 
