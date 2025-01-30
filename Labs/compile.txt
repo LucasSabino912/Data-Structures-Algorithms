@@ -1,10 +1,22 @@
-gcc -Wall -Werror -Wextra -pedantic -std=c99 -o reader *programa* 
-./reader *input*
-
 \n
+{}
+[]
+@
+\'0'
 
-Compilar modularizados:
+- Compilar modularizados:
 
 gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
 gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
 gcc -Wall -Werror -Wextra -pedantic -std=c99 main.o array_helpers.o -o reader 
+
+
+- hequear memory leaks:
+
+valgrind --leak-check=full ./*programa* input/*test*
+
+
+- Correr con gdb para chequear memory leaks:
+
+gcc -g -Wall -Wextra -fsanitize=address -o program *programs*.c
+
