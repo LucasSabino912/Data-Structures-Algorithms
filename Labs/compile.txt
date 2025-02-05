@@ -11,7 +11,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
 gcc -Wall -Werror -Wextra -pedantic -std=c99 main.o array_helpers.o -o reader 
 
 
-- hequear memory leaks:
+- Chequear memory leaks:
 
 valgrind --leak-check=full ./*programa* input/*test*
 
