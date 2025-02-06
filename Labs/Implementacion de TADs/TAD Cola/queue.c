@@ -8,6 +8,8 @@
 /*
 Basicamente podemos pensar una cola como un conjunto de listas,
 cada elemento tiene su elemento y su puntero al nodo
+
+Sigue el principio FIFO, primero que llega, primero que se va
 */
 
 struct s_queue {
@@ -42,7 +44,7 @@ destroy_node(struct s_node *node) {
 static bool
 invrep(queue q) {
     // q->first == NULL <=>
-    // q->first == NULL <=>
+    // q->last == NULL <=>
     // q->size == 0
     bool some_null = true;
     if(q->first == NULL || q->last == NULL || q->size == 0){
