@@ -23,9 +23,8 @@ Comprender las estructuras de datos y los algoritmos es esencial para resolver p
 
 ### Fase 1: Conceptos Básicos, Algoritmos de Ordenamiento y Búsqueda
 - Introducción a los Algoritmos
-- Ordenamiento elemental
-- Ordenamiento avanzado
-- Ordenamiento de burbuja
+- Selection Sort
+- Insertion Sort
 - Merge Sort
 - Quick Sort
 - Búsqueda binaria
