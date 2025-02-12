@@ -85,7 +85,9 @@ dict_t on_add(dict_t current) {
         word = string_destroy(word);
     } else {
         definition = get_input("Please enter the definition");
+
         current = dict_add(current, word, definition);
+        
         printf(RESULT_PREFIX "The word and definition were added.\n");
     }
     return (current);
@@ -165,39 +167,55 @@ void on_size(dict_t current) {
     printf(RESULT_PREFIX "The size of the dict is %u\n", dict_length(current));
 }
 
-int main(void) {
+void on_show(dict_t current) {
+    dict_dump(current, stdout);
+}
+
+int main(int argc, char *argv[]) {
     char option = '\0';
+    if (argc > 2) {
+        print_help(argv[0]);
+        return (EXIT_FAILURE);
+    }
+
     dict_t current = dict_empty();
+    
+    if (argc == 2){
+        string filename = string_create(argv[1]);
+        current = dict_from_file(filename);
+        filename = string_destroy(filename);
+    }
+
     /* print a simple menu and do the requested operations */
     do {
         option = print_menu();
         switch (option) {
             case ADD:
-
+                current = on_add(current);
                 break;
             case REMOVE:
-
+                current = on_remove(current);
                 break;
             case REPLACE:
-
+                current = on_replace(current);
                 break;
             case DUMP:
-
+                on_dump(current);
                 break;
             case EMPTY:
-
+                current = on_empty(current);
                 break;
             case LOAD:
-
+                current = on_load(current);
                 break;
             case SEARCH:
-
+                on_search(current);
                 break;
             case SHOW:
-
+                on_show(current);
                 break;
             case SIZE:
-
+                on_size(current);
                 break;
             case QUIT:
                 current = dict_destroy(current);

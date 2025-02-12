@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -g
-SOURCES = abb.c main.c
+SOURCES = dict_helpers.c dict.c helpers.c string.c main.c
 OBJECTS = $(SOURCES:.c=.o)
-TARGET = readtree
+TARGET = dictionary
 
 .PHONY: clean read val
 
@@ -15,14 +15,17 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJECTS) $(TARGET)
+	$(RM) $(OBJECTS) $(TARGET) .gdb_history $(TARGET).exe
 
 #
-read: all
+dict: all
 	@./$(TARGET) $(filter-out $@,$(MAKECMDGOALS))
 
 val: all
-	@valgrind --leak-check=full ./$(TARGET) $(filter-out $@,$(MAKECMDGOALS))
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET) $(filter-out $@,$(MAKECMDGOALS))
+
+gdb: all
+	@gdb ./$(TARGET) $(filter-out $@,$(MAKECMDGOALS))
 
 %:
 	@:
