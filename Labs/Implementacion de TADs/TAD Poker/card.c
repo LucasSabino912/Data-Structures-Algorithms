@@ -5,9 +5,10 @@
 
 #include "card.h"
 
+// Nuestra estructura carta es una tupla con numero y palo 
 struct s_card {
-    cardnum_t num;
-    cardsuit_t suit;
+    cardnum_t num;   // Tipo cardnum_t  (se encuentra definido en card.h)
+    cardsuit_t suit; // Tipo cardsuit_t (se encuentra definido en card.h)
 };
 
 bool invrep(card c) {
@@ -17,25 +18,28 @@ bool invrep(card c) {
                 c->suit==hearts ||
                 c->suit==diamonds ||
                 c->suit==clubs);
-               ;
     return valid;
 }
 
 card card_create(cardnum_t num, cardsuit_t suit) {
-    card c=NULL;
-    /*
-     * Completar
-     *
-     */
+    // card c = NULL; ESTAS QUERIENDO ACCEDER A UN PUNTERO NULO!!
+    card c = malloc(sizeof(*c));
+
+    if(c == NULL){
+        return NULL; // Manejo de error si malloc falla
+    }
+
+    c->num = num;
+    c->suit = suit;
+
     assert(invrep(c));
     return c;
 }
 
 card card_destroy(card c) {
-    /*
-     * Completar
-     *
-     */
+
+    c = NULL;
+
     assert(c==NULL);
     return c;
 }

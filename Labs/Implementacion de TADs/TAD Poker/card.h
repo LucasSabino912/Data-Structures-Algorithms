@@ -31,7 +31,7 @@ typedef enum {
 #define CARD_NUM_FST 1
 #define CARD_NUM_LST 13
 
-#define CARD_NUMS (CARD_NUM_LST - CARD_NUM_FST + 1)
+#define CARD_NUMS (CARD_NUM_LST - CARD_NUM_FST + 1) 
 
 typedef enum {red, black} cardcolor_t;
 

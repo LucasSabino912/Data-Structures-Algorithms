@@ -8,12 +8,13 @@
 
 #include <assert.h>
 
+// sdeck es un puntero a la estructura s_deck
 struct s_sdeck {
-    /*
-     * Completar
-     *
-     */
     struct s_node *first;
+    struct s_node *last_red;
+    unsigned int size;
+    unsigned int qred;
+    unsigned int qblack;
 };
 
 struct s_node {
@@ -22,118 +23,291 @@ struct s_node {
     struct s_node *next;
 };
 
-
 typedef struct s_node * node_t;
 
 static node_t create_node(card c) {
-    /*
-     * Completar
-     *
-     */
+    node_t new_node = malloc(sizeof(*new_node)); // Alloqueamos con el puntero a lo que seria la estructura
+    if(new_node == NULL){
+        return NULL; // Manejo de errores
+    }
+
+    new_node->c = c; // Le damos el valor c del nodo nuestra carta ingresada
+    new_node->color = card_color(c); // Ingresamos al color mediante la funcion ya definida en el TAD carta
+    new_node->next = NULL; // Como esta incializado, nuestro siguiente nodo es null
+
+    return new_node; 
 }
 
 static node_t destroy_node(node_t node) {
-    /*
-     * Completar
-     *
-     */
+    if(node == NULL){
+        return NULL;
+    }
+
+    free(node);
+
+    return NULL;
 }
 
-
+/*
+Condiciones de consistencia: 
+ - Orden
+ - Integridad de contadores
+ - Puntero last_red
+*/
 static bool invrep(sdeck deck) {
-    bool valid=false;
-    /*
-     * Completar
-     *
-     */
-    return valid;
+    if (deck == NULL) {
+        return false;
+    }
+
+    // Si el mazo está vacío, los contadores deben ser 0 y last_red debe ser NULL
+    if (deck->size == 0) {
+        return (deck->qred == 0 && deck->qblack == 0 && deck->last_red == NULL);
+    }
+
+    unsigned int count_red = 0;
+    unsigned int count_black = 0;
+    node_t current = deck->first;
+    node_t last_red = NULL;
+    bool found_black = false;
+
+    while (current != NULL) {
+        // Verifico el color de la carta
+        if (current->color == red) {
+            count_red++;
+            last_red = current;
+            if (found_black) {
+                return false; // Si encontré negro antes, la estructura está mal
+            }
+        } else if (current->color == black) {
+            count_black++;
+            found_black = true;
+        } else {
+            return false; // Color inválido
+        }
+
+        current = current->next;
+    }
+
+    // Verifico que los contadores sean correctos
+    if (deck->qblack != count_black || deck->qred != count_red) {
+        return false;
+    }
+
+    // Verifico que last_red realmente apunte a la última roja (si hay rojas)
+    if (deck->qred > 0 && deck->last_red != last_red) {
+        return false;
+    }
+
+    // Verifico que el tamaño total sea correcto
+    return (deck->size == (count_red + count_black));
 }
+
 
 
 sdeck sorteddeck_create(void) {
-    /*
-     * Completar
-     *
-     */
+    sdeck deck = malloc(sizeof(*deck));
+    
+    if(deck == NULL){
+        return NULL; // Manejo de errores
+    }
+    // SIEMPRE incializar los campos
+    deck->first = NULL;
+    deck->last_red = NULL;
+    deck->size = 0;
+    deck->qblack = 0;
+    deck->qred = 0;
+
+    return deck;
  }
 
 sdeck sorteddeck_destroy(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    if(deck == NULL){
+        return NULL;
+    }
+
+    node_t current = deck->first;
+    node_t next_node;
+
+    while (current != NULL){
+        next_node = current->next;  // Guardo la referencia al siguiente nodo
+        destroy_node(current);      // Libero el nodo actual (ya devuelve NULL, pero no lo usamos)
+        current = next_node;        // Avanzo en la lista
+    }
+
+    free(deck);
+    return NULL;
 }
 
+
+/*
+    Esta funcion agrega una carta:
+     - Si es negra va al final
+     - Si es roja va despues de last_red, ya que es mas eficiente que mover todo
+*/
 sdeck sorteddeck_add(sdeck deck, card c) {
     assert(invrep(deck));
     node_t new_node = create_node(c);
-    /*
-     * Completar
-     *
-     */
- 
+    if(new_node == NULL){
+        return deck; // Error al allocar memoria
+    }
+
+    if(card_color(c) == red){
+        // Si no hay cartas en el mazo o no hay rojas
+        if(deck->last_red == NULL){
+            // Inserto al inicio
+            // El nuevo nodo ahora apunta al que antes era el primero
+            new_node->next = deck->first; // Lo meto al next para no perder la referencia a mi nodo (memory leak)
+            // Ahora el nuevo nodo es la primera carta del mazo
+            deck->first = new_node;
+        } else {
+            new_node->next = deck->last_red->next;
+            deck->last_red->next = new_node;
+        }
+        deck->last_red = new_node; // Actualizo el ultimo rojo
+        deck->qred++;
+    } else {
+        // Inserto al final (caso carta negra)
+        if(deck->first == NULL){
+            deck->first = new_node;
+        } else {
+            node_t current = deck->first;
+            while(current->next != NULL){
+                current = current->next;
+            }
+            current->next = new_node;
+        }
+        deck->qblack++;
+    }
+
+    deck->size++;
+
     assert(invrep(deck) && !sorteddeck_is_empty(deck));
     return deck;
 }
 
 sdeck sorteddeck_remove(sdeck deck, card c) {
     assert(invrep(deck));
-    /*
-     * Completar
-     *
-     */
+    
+    if(deck->first == NULL){
+        return deck; // Si el mazo esya vacio, no hay nada que hacer
+    }
+
+    node_t prev = NULL;
+    node_t current = deck->first;
+
+    // Busco la carta 'c' en el mazo
+    while(current != NULL && current->c != c){
+        prev = current;
+        current = current->next; 
+    }
+
+    // Si no se encontrola carta, no se hacen cambios
+    if(current == NULL){
+        return deck;
+    }
+
+    // Si la carta es la primera en el mazo
+    if(prev == NULL){
+        deck->first = current->next;
+    } else
+    {
+        prev->next = current->next;
+    }
+    
+    // Actualizo last red si elimine la ultima carta roja
+    if(current->color == red){
+        deck->qred--;
+        if(deck->last_red == current){
+            deck->last_red = prev; // Queda null si era la unica roja
+        }
+    } else {
+        deck->qblack--;
+    }
+
+    deck->size--;
+
+    free(current);
+
     assert(invrep(deck));
     return deck;
 }
 
 sdeck sorteddeck_popfirst(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
- }
+    assert(invrep(deck));
+    if(deck == NULL || deck->first == NULL){
+        return deck; // No hago nada
+    }
+
+    node_t remove = deck->first; // Guardo la referencia al primer nodo
+    deck->first = remove->next; // muevo al puntero first al proximo nodo 
+
+    if(remove->color == red){
+        deck->qred--;
+        if(deck->last_red == remove){
+            deck->last_red = NULL; // Si elimine la ultima carta roja
+        }
+    } else {
+        deck->qblack--;
+    }
+
+    deck->size--;
+
+    free(remove);
+
+    return deck;
+}
 
 card sorteddeck_first(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    return deck->first->c;
 }
 
 unsigned int sorteddeck_size(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    return deck->size;
 }
 
 unsigned int sorteddeck_redcount(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    return deck->qred;
 }
 
 unsigned int sorteddeck_blackcount(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    return deck->qblack;
 }
 
 bool sorteddeck_is_empty(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    return deck->size == 0;
+    // return deck->first == NULL es otra opcion
 }
 
 
+/*
+    1° creo un arreglo dinamico
+    2° recorro la lista enlazada
+    3° almaceno las cartas en el arreglo
+    4° devuelvo el arreglo
+*/
 card* sorteddeck_to_array(sdeck deck) {
-    /*
-     * Completar
-     *
-     */
+    assert(invrep(deck));
+    if(deck->size == 0){
+        return NULL;
+    }
+
+    // Asigno memoria para el arreglo
+    card* array = malloc(deck->size * sizeof(card));
+    if(array == NULL){
+        return NULL;
+    }
+
+    // Ahora recorro el deck
+    node_t current = deck->first;
+    unsigned int i = 0;
+
+    while(current != NULL){
+        array[i] = current->c; // Almaceno la carta en el array
+        current = current->next;
+        i++;
+    }
+
+    return array;
 }
 
 void sorteddeck_dump(sdeck deck) {
