@@ -10,17 +10,18 @@
 
 // sdeck es un puntero a la estructura s_deck
 struct s_sdeck {
-    struct s_node *first;
-    struct s_node *last_red;
-    unsigned int size;
-    unsigned int qred;
-    unsigned int qblack;
+    struct s_node *first;    // nodo con primer carta 
+    struct s_node *last_red; // nodo con ultima carta roja, las demas seran negras
+    unsigned int size;       // tamaño del deck (PRE: qred + qblack)
+    unsigned int qred;       // Cantidad de rojas
+    unsigned int qblack;     // Cantidad de negras
 };
 
+// s_node es la estructura, node_t es el puntero a la estructura
 struct s_node {
-    card c;
-    cardcolor_t color;
-    struct s_node *next;
+    card c;              // Carta del nodo
+    cardcolor_t color;   // Color de la carta (accedo con card_color(c))
+    struct s_node *next; // Proxima carta
 };
 
 typedef struct s_node * node_t;
@@ -226,7 +227,7 @@ sdeck sorteddeck_remove(sdeck deck, card c) {
 
     deck->size--;
 
-    free(current);
+    current = destroy_node(current);
 
     assert(invrep(deck));
     return deck;
