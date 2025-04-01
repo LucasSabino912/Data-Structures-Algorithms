@@ -6,11 +6,12 @@
 #include "sort_helpers.h"
 #include "sort.h"
 
+// Compiling:
+// gcc -Wall -Werror -Wextra -pedantic -std=c99
 
 static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
-    unsigned int piv;
     if (der > izq){
-        partition(a, izq, der);
+        unsigned int piv = partition(a, izq, der);
         quick_sort_rec(a, izq, piv-1);
         quick_sort_rec(a, piv + 1, der);
     }
