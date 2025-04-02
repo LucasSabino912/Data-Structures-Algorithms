@@ -9,21 +9,38 @@
 
 
 static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
-    /* Needs implementation */
+    unsigned int i = 0, j = 0, piv = izq;
+    i = izq++;
+    j = der;
+    while(i <= j){
+        if(goes_before(a[i], a[piv]) || a[i] == a[piv]){
+            i++;
+        } else if (goes_before(a[piv], a[j]) || a[j] == a[piv]){
+            j--;
+        } else if (goes_before(a[piv], a[i]) && goes_before(a[j], a[piv])){
+            swap(a,i,j);
+            i++;
+        }
+    }
+    swap(a,piv,j);
+    piv = j;
 
-    /* PRECONDITION: 
-       0 <= izq < der < length of the array
+    return piv;
+}
 
-     Permutes elements of a[izq..der] and returns pivot such that:
-     - izq <= pivot <= der
-     - elements in a[izq,pivot) all 'go_before' (according to function goes_before) a[pivot]
-     - a[pivot] 'goes_before' all the elements in a(pivot,der]
-    */
+void swap(int a[], unsigned int x, unsigned int y){
+    unsigned int tmp;
+    tmp = a[x];
+    a[x] = a[y];
+    a[y] = tmp; 
 }
 
 static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
-    /* copiá acá la implementación que hiciste en el ejercicio 3 */
-
+    if (der > izq){
+        unsigned int piv = partition(a, izq, der);
+        quick_sort_rec(a, izq, piv-1);
+        quick_sort_rec(a, piv + 1, der);
+    }
 }
 
 void quick_sort(int a[], unsigned int length) {
