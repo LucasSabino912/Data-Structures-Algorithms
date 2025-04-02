@@ -7,18 +7,19 @@
 #include "sort_helpers.h"
 #include "fixstring.h"
 
-void swap(fixstring a[], unsigned int i, unsigned int j) {
-    /*
-     * COMPLETAR
-     *
-     */
+void swap(fixstring a[], unsigned int x, unsigned int y){
+    unsigned int tmp;
+    tmp = a[x];
+    a[x] = a[y];
+    a[y] = tmp; 
 }
 
+
 bool goes_before(fixstring x, fixstring y) {
-    /*
-     * COMPLETAR
-     *
-     */
+    if(x < y){
+        return true;
+    }
+
     return false;
 }
 
