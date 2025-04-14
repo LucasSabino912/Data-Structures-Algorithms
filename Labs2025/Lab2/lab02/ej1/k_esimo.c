@@ -19,22 +19,22 @@ void swap(int a[], int i, int j);
  */
 int k_esimo(int a[], int length, int k) {
     int izq = 0, der = length - 1;
-    int a_k = a[0];
 
-    while(izq <= der){
+    while (izq <= der) {
         int pos = partition(a, izq, der);
-        if(pos == k){
-            a_k = a[k];
-        // Si no se cumple achico el arreglo, por derecha o por izquierda
-        } else if(k < pos) {
+        if (pos == k) {
+            return a[k];
+        } else if (k < pos) {
             der = pos - 1;
         } else {
             izq = pos + 1;
         }
     }
 
-    return a_k;
+    // Solo llegás acá si k no es válido (lo cual no debería pasar)
+    return -1;
 }
+
 
 int partition(int a[], int izq, int der) {
     int i, j, ppiv;
