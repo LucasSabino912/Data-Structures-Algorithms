@@ -13,11 +13,31 @@
  * @param length Largo del arreglo.
  */
 bool tiene_cima(int a[], int length) {
+    bool res = false;
 
-    // COMPLETAR!!
+    if (length >= 3) {
+        int i = 0;
+        // Subida estricta
+        while (i + 1 < length && a[i] < a[i + 1]) {
+            i++;
+        }
+        
+        // Verifico que hubo al menos una subida y que no terminó al final
+        if (i != 0 && i != length - 1) {
+            // Bajada estricta
+            while (i + 1 < length && a[i] > a[i + 1]) {
+                i++;
+            }
 
-    return false;
+            if (i == length - 1) {
+                res = true;
+            }
+        }
+    }
+
+    return res;
 }
+
 
 /**
  * @brief Dado un arreglo que tiene cima, devuelve la posición de la cima.
@@ -32,8 +52,14 @@ bool tiene_cima(int a[], int length) {
  * @param length Largo del arreglo.
  */
 int cima(int a[], int length) {
+    int i = 0;
+    int c = 0;
 
-    // COMPLETAR!!
+    while (i + 1 < length && a[i] < a[i + 1]) {
+        i++;
+    }
 
-    return 0;
+    c = a[i];
+
+    return c;
 }
