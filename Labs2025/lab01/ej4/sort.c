@@ -77,8 +77,6 @@ static void quick_sort_rec(int a[], unsigned int izq, unsigned int der) {
     }
 }
 
-
-
 // quick_sort ordena un arreglo a[] de enteros de menor a mayor. 
 // Para hacerlo, llama recursivamente a quick_sort_rec, que utiliza partition para dividir el arreglo.
 void quick_sort(int a[], unsigned int length) {
