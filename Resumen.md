@@ -1,5 +1,3 @@
-# Resumen parcial 1
-
 # Algoritmos de ordenación
 
 ## Selection sort
