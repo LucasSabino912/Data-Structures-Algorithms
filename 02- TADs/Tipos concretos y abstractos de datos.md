@@ -1,111 +1,61 @@
-# Tipos concretos y abstractos
-
-Tipos de datos
-
-- Enumerados
-- Tuplas
-- Arrays
-- Punteros
-
-Distinguimos dos clases de tipos de datos:
-
-- Tipos **concretos:**
-    - son nativos, o sea, provistos por el lenguaje de programacion
-    - dependen del lenguaje de programacion
-    - Por ej: enteros, char, strinf, booleanos, arreglos, etc
-- Tipos **abstractos**:
-    - surgen de analizar un problema a resolver, siendo asi un concepro independiente del lenguaje de programacion
-    - Eventualmente se implementan usando tipos concretos, eso da lugar a una implementacion o repersentacion del tipo abstracto
-
 # Tipos concretos
 
 ## Enumerado
 
-Consiste de una serie finita de constantes, que seran los unicos elementos del tipo. En nuestro lenguaje el programador puede definit un nuevo tipo enumeradp de la siguiente forma:
+Consiste en una serie finita de constantes, que seran los unicos elementos del tipo
 
 ```c
-type E = enumerate 
-		elem1
-		elem2
-		...
+// Definicion del enumerado
+// elem1,...,elemk
+type e = enumerate
+					elem1
+					elem2
+					...
 end enumerate
-```
 
-En C:
-
-```c
-typedef enum {
-    ELEM1,
-    ELEM2,
-    // ...
-} E;
-
-```
-
-El tipo E tiene unicamente los k elementos elem1, …, elemk
-
-En un programa se puede decalarar una variable del tipo enumerado E:
-
-```c
+// Definicion de variables
 var e: E
 e:= elem2
-```
 
-Tambien se permiten ciclos for donde el indice tome los valores de un tipo enumerado
-
-```c
+// Se recorre de esta forma
 for i:= elem1 to elemk do ... od
 ```
 
 ## Tuplas
 
-Las tuplas representan productos cartesianos de distintos tipos. Se puede definir un nuevo tipo mediante una tupla de la siguiente manera:
+Las tuplas representan productos cartesianos de disntintos tipos
 
 ```c
-type person = tuple 
-		name: string
-		age: nat
-		weight: real
-	    end tuple
-```
+// Definicion de la tupla
+type person = tuple
+								name: string
+								age: nat
+								weight: float
+							end tuple
 
-En C: 
-
-```c
-typedef struct {
-    char name[100];
-    unsigned int age; 
-    float weight;
-} Person;
-
-```
-
-Para acceder a los campos de una tupla se utiliza el operador . 
-
-```c
-var manu: person
-manu.name:= "manu"
-manu.age:= 20
-manu.weight:= 68
+// Acceso a los campos de las tuplas
+var lucas: person
+lucas.name:= "Lucas"
+lucas.age:= 22
+lucas.weight:= 88
 ```
 
 ## Arrays
 
-Los arreglos son colecciones de elementos del mismo tipo de tamaño fijo
+Los arreglos son colecciones de elementos del mismo tipo
 
 ```c
+// Arreglo unidimensional
 var a:array[1..n]
 
-// Tambien pueden ser multidimensionales
-
-var b:array[1..n,1..m] // Se piensa como una matriz 2x3
-
+// Arreglo mulitdimensional
+var b:array[1..n,1..m]
 var c:array[1..n,'a'..'z',1..m]
 
-// Para inicializar el arreglo c lo puedo hacer con 3 for anidados
+// Iniciar y recorrer los arreglos
 for i:= m to n do
 	for k:= 'a' to 'z' do
-		for d:=1 to m do
+		for d:= 1 to m do
 			c[i,k,d]:= 0
 		od
 	od
@@ -114,53 +64,45 @@ od
 
 ## Punteros
 
-Dado un tipo T, un **puntero a T** es un tipo de datos que representa el lugar de memorua donde esta alojado el elemento de tipo **T**
-
-Por ejemplo se puede declarar un puntero a nat asi:
+Dado un tipo T, un **puntero** a T es un tipo de datos que representan el lugar de memoria donde esta alojado el elemento de tipo T
 
 ```c
 var p: pointer to nat
+
+// Reservar un nuevo bloque
+alloc(p)
+// Acceder a un bloque de memoria
+*p:= 10 // p apunta al valor 10
+// Liberar el bloque de memoria
+free(p)
+// Representar punteros que no apuntan a nada
+p:= null
 ```
-
-En C:
-
-```c
-unsigned int *p;
-```
-
-Mediante punteros podemos manipular la memoria disponible al ejecutar el programa
-
-- Para reservar un nuevo bloque se utiliza alloc(p)
-- Puedo acceder al valor del bloque de memorua mediante la operacion *: *p:= 10, decimos que p *apunta* al valor 10
-- Para liberar el bloquede memoria se utiliza free(p), luego de realizar el free, p ya no apunta a un bloque de memoria reservado por el programa, por lo cual no se puede saber que valor tiene la expresion *p
-- Existe una constante para representar punteros que no apuntan a nada, p:= **null**
 
 # Tipos abstractos
 
-## Especificacion de TADs
+### Especificación de TADs
 
-Para especificar un TAD debemos: 
+Para **especificar** un nuevo TAD debemos:
 
-- Indicar su nombre
-- Especificar constructores: procedimientos o funciones mediante los cuales puedo crear elementos del tipo que estoy especificando
-- Especificar operaciones: procedimientos o funciones que permitiran manipular los elemenos del TAD
+- Indicar su **nombre**
+- **Especificar constructores:** procedimientos o funciones mediante los cuales puedo crear elementos del tipos que estos especificando
+- **Especificar opercaciones:** procedimientos o funciones que permitiran manipular los elementos del TAD
 - Algunas operaciones tendran **precondiciones**
-- Especificar la operacion destruccion que libera la memoria utilizada por los elementos del tipo
+- Especificar la operacion **destruccion** que libera memoria en caso de que sea necesario
 
-## Implementacion de TADs
+### **Implementacion de TADs**
 
-Para implementar un TAD debemos:
+Para **implementar** un TAD debemos:
 
-- Definir un nuevo tipo con el nombre del TAD especificado, se utilizan tipos concretos
-- Implementar cada constructor
-- Implementar cada operacion
-- Puedo necesitar operaciones auxiliares
+- Definir un nuevo tipo con el **nombre del TAD** especificado, se utilizan **tipos concretos**
+- Implementar cada **constructor**
+- Implementar cada **operacion**
+- Puedo necesitar **operaciones auxiliares**
 
-# TAD Listas
+## TAD Lista
 
-![https://saberpunto.com/wp-content/uploads/lista-enlazada.webp](https://saberpunto.com/wp-content/uploads/lista-enlazada.webp)
-
-### Especificacion de Listas
+### Especificacion de listas
 
 ```c
 spec List of T where
@@ -210,15 +152,15 @@ operations
 	{- Copia todos los elemtnso de l0 en el mismo orden -}
 ```
 
-### Implementacion de las listas mediante punteros
+### Implementacion de listas enlazadas (punteros)
 
 ```c
-implement List of T where
+Implement List of T where
 
-type Node of T = Tuple
-		   elem: T
-		   next: pointer to (Node of T)
-		 end tuple
+type Node of T = tuple
+									elem: T
+									next: pointer to (Node of T)
+								 end tuple
 
 type List of T = pointer to (Node of T)
 
@@ -238,12 +180,12 @@ fun is_empty(l: List of T) ret b: bool
 	b:= l = null
 end fun
 
-{- PRE: !is_empty(l) -}
+{- PRE: !is_empty -}
 fun head(l: List of T) ret e: T
 	e:= l->elem
 end fun
 
-{- PRE: !is_empty(l) -}
+{- PRE: !is_empty -}
 proc tail(in/out l: List of T)
 	var p: pointer to (Node of T)
 	p:= l
@@ -251,7 +193,8 @@ proc tail(in/out l: List of T)
 	free(p)
 end proc
 
-proc addr(in/out l: List of T, in e: T)
+{- PRE: !is_empty -}
+proc addr(in/out l: List of T)
 	var p,q: pointer to (Node of T)
 	alloc(q)
 	q->elem:= e
@@ -261,11 +204,12 @@ proc addr(in/out l: List of T, in e: T)
 		while p->next != null do
 			p:= p->next
 		od
-	else l:= q
+	else 
+		l:= q 
 	fi
 end proc
 
-fun length(l: List of T) ret n:nat
+fun length(l: List of T) ret n: nat
 	var p: pointer to (Node of T)
 	n:= 0
 	p:= l
@@ -277,28 +221,27 @@ end fun
 
 proc concat(in/out l: List of T, in l0: List of T)
 	var p: pointer to (Node of T)
-	if (l = null && l0 != null) then
+	if l = null && l0 != null then
 		l:= l0
 	else 
 		p:= l
 		// Busco el ultimo nodo asi concateno l0 al final de l
-		while (p->next != null) do
-			p:= p-next
+		while p->next != null do
+			p:= p->next
 		od
 		p->next:= l0 // Final de l
 	fi
 end proc
 
-{-PRE: length(l) > n -}
-fun index(l: List of T, n: nat) ret e: T
-	var p: pointer yo (Node of T)
+fun index(l: List of T, in n: nat) ret e: T
+	var p: pointer to (Node of T)
 	p:= l
-	if n > 1 then
-		for i:= 1 to n-1 do
+	if n > 1 then 
+		for i:=1 to n-1 do
 			p:= p->next
 		od
-	else
-		e:= p-elem
+	else 
+		e:= p->elem
 	fi
 	e:= p->elem
 end fun
@@ -346,148 +289,25 @@ proc drop(in/out l: List of T, in n: nat)
 end proc
 
 fun copy_list(l1: List of T) ret l2: List of T
-    var p: pointer to (Node of T)
-    var n: nat
-    n:= length(l1)
-    if (l1 = null) then l2:= empty_list()
-    else
-        p:= l1
-        alloc(l2)
-        for i:= 1 to n do
-            l2->elem = p->elem
-            l2->next = p->next
-            p:= p->next
-        od
-    fi
-end fun	
+  var p: pointer to (Node of T)
+  var n: nat
+  n:= length(l1)
+  if (l1 = null) then l2:= empty_list()
+  else
+      p:= l1
+      alloc(l2)
+      for i:= 1 to n do
+          l2->elem = p->elem
+          l2->next = p->next
+          p:= p->next
+      od
+  fi
+ end fun
 ```
 
-Ejemplo de uso del TAD Lista
+## TAD Pila
 
-```c
-fun promedio(l: List of float) ret r: float
-	var largo: nat
-	var elem: float
-	var laux: List of float
-	
-	largo:= length(l)
-	r:= 0.0
-	laux:= copy_list(l)
-	
-	while not is_empty(laux) do
-		elem:= head(laux)
-		r:= r + elem
-		tail(laux)
-	od
-	destroy(laux)
-	r:= r/largo
-end fun
-```
-
-# TAD contador
-
-Solo necesitamos algo que se pueda:
-
-- inicializar
-- incrementar
-- comprobar si su valor es el incial
-- decrementar si no lo es
-
-## Especificacion del TAD contador
-
-```c
-spec Counter where
-
-constructors
-	fun init() ret c: Counter
-	{- Crea un contador inicial -}
-	
-	proc incr(in/out c: Counter)
-	{- Incrementa el contador c -}
-	
-destroy
-	proc destroy(in/out c: Counter)
-	{- Libera memoria en caso de que sea necesario -}
-	
-operations
-	fun is_init() ret b: bool
-	{- Devuelve true si el contador esta inicalizado -}
-	
-	proc decr(in/out c: Counter)
-	{- Decrementa el contador c -}
-	{- PRE: !is_init(c) -}
-```
-
-## Implementacion del TAD Contador
-
-```c
-implement Counter where
-
-type Counter = nat
-
-proc initi(in/out c: Counter)
-	c:= 0
-end proc
-
-proc inc(in/out c: Counter)
-	c:= c + 1
-end proc
-
-fun is_init(c: Counter) ret b: bool
-	b:= (c = 0)
-end fun
-
-{- PRE: !is_init(c) -}
-proc dec (in/out c: Counter)
-	c:= c - 1
-end proc
-
-proc destroy (in/out c: Counter)
-	skip
-end proc
-```
-
-### Algoritmo de parentesis balanceados:
-
-Basicamente el algoritmo busca si los parentesis estan balanceados o no, el resultado deberia ser counter = 0 y b = true
-
-- Si se encuentra un ‘(’ se incrementa el contador, y si encontramos un ’)’ se decrementa
-- Si el contador es incial y encuentro ‘)’ devuelvo false, si termino de recorrer y el contador no es inicial tambien devuelvo false
-
-```c
-fun matching_parentesis(a:array[1,,n] of char) ret b: bool
-	var i: nat
-	var c: Counter
-	b:= true
-	i:= 1
-	while i <= n && b = true do
-		if a[i] = '(' then
-			inc(c)
-		else if a[i] = ')' && is_init(c) then
-			b:= false
-		else if a[i] = ')' && !is_init(c}) then
-			dec(c)
-		fi
-		i:= i + 1
-	od
-	b:= b && is_init(c)
-	destroy(c)
-end proc
-```
-
-# TAD Pila
-
-La pila se define por 5 operaciones:
-
-- Inicializar vacia
-- Comprobar si esta vacia
-- Apilar un nuevo elemento
-- Examinar el primer elemento (si no es vacia)
-- Quitar el elemento
-
-![https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Pila.svg/1200px-Pila.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Pila.svg/1200px-Pila.svg.png)
-
-## Especificacion del TAD Pila
+### Especificicion del TAD Pila
 
 ```c
 spec Stack of T where
@@ -514,23 +334,9 @@ operations
 // Aparte de las operaciones de destruccion y copa de todos los TADs
 ```
 
-# TAD Cola
+## TAD Cola
 
-Imaginemos cualquier situacion en que ciertos datos deben transferirse de una unidad a la otra, por ejemplo, datos que se quieren subir a algun sitio de internet desde un disco. Un agente suministra o producuce datos (el disco) y otro que los utiliza los consume (el sitio de internet). Para amortiguar el impacto por diferencia de velocidades, se introduce un buffer entre ellos, un buffer recibe y almacena los datos a medida que se producen, emitiendolos en el mismo orden a medida que son solicitados.
-
-Esto se puede solucionar usando una **Cola.** Una cola se puede:
-
-- Inicializar vacia
-- Agregar o encolar un dato
-- Comprobar si quedan datos en el buffer, es decir si esta vacia
-- Examinar el primer dato
-- Quitar o decolar un dato
-
-El primer dato que se agrego, es el primer que debe enviarse y quitarse de la cola, usa una politica **FIFO** (first in/ first out)
-
-[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa2pjGMLLOk9ulj_BhcCnTc6FvMEUMsA3CA&s](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa2pjGMLLOk9ulj_BhcCnTc6FvMEUMsA3CA&s)
-
-## Especifiacion del TAD Cola
+### Especificicion del TAD Cola
 
 ```c
 spec Queue of T where
