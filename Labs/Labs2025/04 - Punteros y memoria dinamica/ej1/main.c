@@ -16,24 +16,46 @@ typedef struct _person {
  *
  * @return EXIT_SUCCESS when programs executes correctly, EXIT_FAILURE otherwise
  */
+
+/*
+  - int *p, p es un puntero a int
+  
+  - Referenciacion(&): Obtiene la direccion de memoria de una variable
+  
+  - Desreferenciacion(*): Obtiene el valor de lo apuntado por el puntero
+  
+  - Constante nula de punteros(NULL): Direccion de memoria nula
+
+  - Indexacion y flecha: 
+      p[n]: Obtiene el valor que hay en la memoria moviendose n lugares a la derecha
+      p->member, es un atajo a (*p).member, p es un puntero a struct
+
+*/
+
 int main(void) {
 
     int x = 1;
     person_t m = {90, 'M'};
     int a[] = {0, 1, 2, 3};
 
-    /* Completar aquí:
+    /*
        Al finalizar la ejecución las variables deben tener los siguientes valores
        x = 9
        m = (100, F)
        a[1] = 42
-
-       Las restricciones son:
-       - No usar las variables 'x', 'm' y 'a' en la parte izquierda de alguna asignación.
-       - Se pueden agregar líneas de código, pero no modificar las que ya existen.
-       - Se pueden declarar hasta 2 punteros.
-       AYUDA: podes usar GDB para consultares valores de variables y la dirección de memoria donde estan alojadas.
     */
+
+    int *p = NULL; // Creo el puntero a un entero
+    p = &x; // P apunta a la direccion de memoria de x
+    *p = 9; // Desreferencio a p y x toma el valor 9
+
+    person_t *q = NULL; // Puntero a la estructura
+    q = &m; // q apunta a la direccion de memoria de m
+    q->age = 100; // Esto es lo mismo que (*q).age = 100;
+    q->name_initial = 'F';
+
+    p = &a[1]; // p apunta al primer segundo elemento de a
+    *p = 42; // Desreferencio y cambio el valor de a[1]
 
     printf("x = %d\n", x);
     printf("m = (%d, %c)\n", m.age, m.name_initial);

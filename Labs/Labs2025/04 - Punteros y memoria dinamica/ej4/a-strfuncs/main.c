@@ -11,8 +11,8 @@ int main(void) {
     char *filtered=NULL;
 
     filtered = string_filter(some_str, '.');
-    printf("original: '%s' (%ld)\n"
-           "filtrada: '%s' (%ld)\n\n"
+    printf("original: '%s' (%u)\n"
+           "filtrada: '%s' (%u)\n\n"
            "La cadena '%s' resulta %s simétrica\n"
            "La cadena '%s' resulta %s simétrica\n",
            some_str, string_length(some_str),
