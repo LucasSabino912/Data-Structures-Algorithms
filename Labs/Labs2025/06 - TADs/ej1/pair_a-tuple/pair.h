@@ -3,11 +3,6 @@
 
 typedef struct s_pair_t pair_t;
 
-struct s_pair_t {
-    int fst;
-    int snd;
-};
-
 pair_t pair_new(int x, int y);
 /*
  * DESC: Creates a new pair with components (x, y)
