@@ -11,16 +11,18 @@ typedef struct _person {
     char name_initial;
 } person_t;
 
-/**
- * @brief Main program function
- *
- * @return EXIT_SUCCESS when programs executes correctly, EXIT_FAILURE otherwise
- */
+
+
 int main(void) {
 
     int x = 1;
     person_t m = {90, 'M'};
     int a[] = {0, 1, 2, 3};
+
+
+
+
+
 
     /* Completar aquí:
        Al finalizar la ejecución las variables deben tener los siguientes valores
