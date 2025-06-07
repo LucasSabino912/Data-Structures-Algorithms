@@ -2,20 +2,16 @@
 #include <stdio.h>
 
 void absolute(int x, int y) {
-    if(x > 0){
-        y = x;
-    } else {
-        y = -x;
-    }
+    //
+    // Completar aquí
+    //
 }
 
 int main(void) {
-    int a = -10, res = 0;
-    absolute(a, res);
-
-    printf("%i", res);
-
+    int a=0, res=0;
+    //
+    // Completar aquí
+    //
     return EXIT_SUCCESS;
 }
 
-// No imprime nada
