@@ -1,20 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
-typedef struct Node {
+typedef struct node {
     int data;
-    struct Node* next;
-} Node;
+    struct node* next;
+} node;
 
-typedef Node *List;
+typedef node *List;
 
 /**
  * @brief Construye y devuelve una lista de ejemplo de 3 elementos
  */
 List setup_example() {
-    //
-    // COMPLETAR ACÁ!
-    //
+    node *n1 = malloc(sizeof(*n1));
+    node *n2 = malloc(sizeof(*n2));
+    node *n3 = malloc(sizeof(*n3));
+
+    n1->data = 9;
+    n1->next = n2;
+
+    n2->data = 12;
+    n2->next = n3;
+
+    n3->data = 18;
+    n3->next = NULL;
+
+    return n1;
 }
 
 /**
@@ -23,9 +35,12 @@ List setup_example() {
  * Precondicion: la lista xs no debe ser vacía
  */
 List tail_example(List xs) {
-    //
-    // COMPLETAR ACÁ!
-    //
+    assert(xs != NULL);
+    node *new_node = NULL;
+
+    new_node = xs->next;
+
+    return new_node;
 }
 
 void show_list(List xs) {

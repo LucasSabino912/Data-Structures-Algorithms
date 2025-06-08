@@ -3,18 +3,29 @@
 
 typedef struct Node {
     int data;
-    struct Node* next;
-} Node;
+    struct node* next;
+} node;
 
-typedef Node *List;
+typedef node *List;
 
 /**
  * @brief Construye y devuelve una lista de ejemplo de 3 elementos
  */
 List setup_example() {
-    //
-    // COMPLETAR ACÁ!
-    //
+    node *n1 = malloc(sizeof(node));
+    node *n2 = malloc(sizeof(node));
+    node *n3 = malloc(sizeof(node));
+
+    n1->data = 9;
+    n1->next = n2;
+
+    n2->data = 12;
+    n2->next = n3;
+
+    n3->data = 18;
+    n3->next = NULL;
+
+    return n1;
 }
 
 void show_list(List xs) {
