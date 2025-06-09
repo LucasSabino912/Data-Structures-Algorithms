@@ -1,12 +1,14 @@
 #ifndef _PAIR_H
 #define _PAIR_H
 
+// Como no son punteros lo pongo e el .h
 typedef struct s_pair_t pair_t;
 
 struct s_pair_t {
     int fst;
     int snd;
 };
+
 
 pair_t pair_new(int x, int y);
 /*
