@@ -3,9 +3,9 @@
 #include "list.h"
 
 #define MAX_LENGTH 10
-#define N_TESTCASES_HEAD 3
-#define N_TESTCASES_INDEX 3
-#define N_TESTCASES_LENGTH 4
+#define N_TESTCASES_HEAD 5
+#define N_TESTCASES_INDEX 5
+#define N_TESTCASES_LENGTH 5
 
 // construye una lista a partir de un arreglo
 // (usa los constructores de lista empty y addl)
@@ -21,6 +21,8 @@ list array_to_list(int array[], int length) {
     return result;
 }
 
+// Esta funcion testea la funcion head(l). 
+// El testcase toma la lista, su largo y el resultado esperable
 void test_head() {
     // representación de un solo caso de test
     struct head_testcase {
@@ -34,6 +36,8 @@ void test_head() {
       { {-2}, 1, -2 },          // testea: head([-2]) == -2
       { {1, -2}, 2, 1 },        // testea: head([1, -2]) == 1
       { {8, 1, -2}, 3, 8 },     // testea: head([8, 1, -2]) == 8
+      { {9, 2, 4, 6}, 4, 9 },    // testea: head([9, 2, 4, 6]) == 9
+      { {1, 2, 3}, 3, 1 },
     };
 
     list input;
@@ -61,6 +65,8 @@ void test_head() {
     }
 }
 
+// Testea la funcion index(l, n)
+// El testcase toma la lista, largo, index(n) y el resultado esperable
 void test_index() {
     // representación de un solo caso de test
     struct index_testcase {
@@ -75,6 +81,8 @@ void test_index() {
       { {8, 1, -2}, 3, 0, 8 },      // testea: index([8, 1, -2], 0) == 8
       { {8, 1, -2}, 3, 1, 1 },      // testea: index([8, 1, -2], 1) == 1
       { {8, 1, -2}, 3, 2, -2 },     // testea: index([8, 1, -2], 2) == -2
+      { {9, 12, 18}, 3, 0, 9 },     // testea: index([9, 12, 18], 0) == 9
+      { {9, 12, 18}, 3, 1, 12 },    // testea: index([9, 12, 18], 1) == 12
     };
 
     list input;
@@ -102,6 +110,8 @@ void test_index() {
     }
 }
 
+// Esta funcion testea la funcion length(l)
+// El testcase toma la lista y el largo (el cual es el resultado esperable)
 void test_length() {
     // representación de un solo caso de test
     struct length_testcase {
@@ -116,6 +126,7 @@ void test_length() {
       { {-2}, 1 },          // testea: length([-2]) == 1
       { {1, -2}, 2 },       // testea: length([1, -2]) == 2
       { {8, 1, -2}, 3 },    // testea: length([8, 1, -2]) == 3
+      { {9, 12, 18}, 3 },
     };
 
     list input;

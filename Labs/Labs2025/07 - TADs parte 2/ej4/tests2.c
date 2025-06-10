@@ -6,6 +6,8 @@
 #define N_TESTCASES_TAIL 3
 #define N_TESTCASES_ADDR 4
 #define N_TESTCASES_TAKE 5
+#define N_TESTCASES_DROP 5
+#define N_TESTCASES_CONCAT 5
 
 // construye una lista a partir de un arreglo
 // (usa los constructores de lista empty y addl)
@@ -181,10 +183,102 @@ void test_take() {
     }
 }
 
+// Testeo de la función drop()
+void test_drop() {
+    struct drop_testcase {
+        int a[MAX_LENGTH];       // elementos de la lista de entrada
+        int length;              // largo de la lista de entrada
+        int n;                   // cantidad de elementos a eliminar al principio
+        int result[MAX_LENGTH];  // elementos esperados de la lista resultado
+        int result_length;       // largo esperado de la lista resultado
+    };
+
+    struct drop_testcase tests[N_TESTCASES_DROP] = {
+        { {1, 2, 3, 4, 5}, 5, 0, {1, 2, 3, 4, 5}, 5 },    // drop 0 elementos => lista igual
+        { {1, 2, 3, 4, 5}, 5, 2, {3, 4, 5}, 3 },          // drop 2 elementos => quito 1 y 2
+        { {1, 2, 3, 4, 5}, 5, 5, {}, 0 },                 // drop todos los elementos => lista vacía
+        { {1, 2, 3}, 3, 4, {}, 0 },                        // drop más que largo => lista vacía
+        { {}, 0, 3, {}, 0 }                                // drop en lista vacía => sigue vacía
+    };
+
+    list input;
+    list result, expected_result;
+
+    printf("TESTING drop\n");
+
+    for (int i=0; i < N_TESTCASES_DROP; i++) {
+        printf("Test case %i: ", i+1);
+
+        input = array_to_list(tests[i].a, tests[i].length);
+
+        result = drop(input, tests[i].n);
+
+        expected_result = array_to_list(tests[i].result, tests[i].result_length);
+
+        if (is_equal_to(result, expected_result)) {
+            printf("OK\n");
+        } else {
+            printf("FAILED\n");
+        }
+
+        destroy_list(result);
+        destroy_list(expected_result);
+    }
+}
+
+// Testeo de la función concat()
+void test_concat() {
+    struct concat_testcase {
+        int a1[MAX_LENGTH];      // elementos de la lista 1
+        int length1;             // largo de lista 1
+        int a2[MAX_LENGTH];      // elementos de lista 2
+        int length2;             // largo lista 2
+        int result[MAX_LENGTH*2]; // lista esperada de la concatenación
+        int result_length;       // largo esperado
+    };
+
+    struct concat_testcase tests[N_TESTCASES_CONCAT] = {
+        { {1, 2, 3}, 3, {4, 5, 6}, 3, {1, 2, 3, 4, 5, 6}, 6 },  // concatenación normal
+        { {}, 0, {1, 2, 3}, 3, {1, 2, 3}, 3 },                   // lista1 vacía + lista2 no vacía
+        { {1, 2, 3}, 3, {}, 0, {1, 2, 3}, 3 },                   // lista1 no vacía + lista2 vacía
+        { {}, 0, {}, 0, {}, 0 },                                 // ambas listas vacías
+        { {1}, 1, {2}, 1, {1, 2}, 2 }                            // listas unitarias concatenadas
+    };
+
+    list l1, l2;
+    list result, expected_result;
+
+    printf("TESTING concat\n");
+
+    for (int i=0; i < N_TESTCASES_CONCAT; i++) {
+        printf("Test case %i: ", i+1);
+
+        l1 = array_to_list(tests[i].a1, tests[i].length1);
+        l2 = array_to_list(tests[i].a2, tests[i].length2);
+
+        result = concat(l1, l2);
+
+        expected_result = array_to_list(tests[i].result, tests[i].result_length);
+
+        if (is_equal_to(result, expected_result)) {
+            printf("OK\n");
+        } else {
+            printf("FAILED\n");
+        }
+
+        destroy_list(result);
+        destroy_list(expected_result);
+    }
+}
+
+
 int main() {
     test_tail();
     test_addr();
     test_take();
+
+    test_drop();
+    test_concat();
 
     return 0;
 }
