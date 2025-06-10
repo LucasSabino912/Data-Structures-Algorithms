@@ -1,9 +1,11 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <limits.h>
+
 #include "change.h"
 
 #define MAX_COINS 10
-#define N_TESTCASES 1
+#define N_TESTCASES 4
 
 int main() {
     // representación de un solo caso de test
@@ -16,8 +18,12 @@ int main() {
 
     // casos de test (uno por línea): { d, n, k, result }
     struct testcase tests[N_TESTCASES] = {
-      { {4, 2, 7}, 3, 16, 3 },  // testea: change({4,2,7}, 3, 16) == 3
+        { {4, 2, 7}, 3, 16, 3 },   // 7 + 7 + 2 = 16 → 3 monedas
+        { {1, 3, 4}, 3, 6, 2 },    // 3 + 3 = 6 → 2 monedas
+        { {5, 10}, 2, 3, INT_MAX },// No se puede formar 3 → devuelve infinito
+        { {1, 2, 5}, 3, 11, 3 },   // 5 + 5 + 1 = 11 → 3 monedas
     };
+
 
     int result;
 
