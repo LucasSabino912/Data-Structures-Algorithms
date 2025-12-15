@@ -32,7 +32,6 @@ end fun
 // Devuelve el elemento en el tope de s
 {- PRE: !is_empty_stack(s) -}
 fun top(s: Stack of T) ret e: T
-	e:= index(s, length(s))
 
 // Elimina el elmento en el tope de s
 +{- PRE: !is_empty_stack(s) -}
